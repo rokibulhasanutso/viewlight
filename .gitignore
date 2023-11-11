@@ -12,7 +12,7 @@ dist
 dist-ssr
 *.local
 
-src/App2.jsx
+App2.jsx
 
 # Editor directories and files
 .vscode/*
