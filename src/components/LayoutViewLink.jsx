@@ -3,23 +3,30 @@ import { setViewUrl } from "../redux/slices/layoutCategory";
 import { useState } from "react";
 
 const LayoutViewLink = () => {
-  const [viewLink, setViewLink] = useState("");
-
+  const [urlInputValue, setUrlInputValue] = useState("");
   const { viewUrl } = useSelector((state) => state.layoutCategory);
   const dispatch = useDispatch();
 
-//   if (!viewLink) {
-//     dispatch(setViewUrl(viewLink));
-//   }
+  const handleUrlInputChange = (event) => {
+    const urlValue = event.target.value;
+
+    const validUrlValue =
+      urlValue.startsWith("http://") || urlValue.startsWith("https://")
+        ? urlValue
+        : `${
+            urlValue.startsWith("localhost") ? "http://" : "https://"
+          }${urlValue}`;
+
+    setUrlInputValue(validUrlValue);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(event);
 
-    dispatch(setViewUrl(viewLink));
+    console.log("handleSubmit");
+
+    dispatch(setViewUrl(urlInputValue));
   };
-
-    console.log(viewUrl);
 
   return (
     <div>
@@ -32,16 +39,35 @@ const LayoutViewLink = () => {
           name="viewUrl"
           type="text"
           placeholder="https://www.exmple.com"
-          value={viewLink || viewUrl}
+          value={
+            urlInputValue.startsWith("https://") ||
+            urlInputValue.startsWith("http://")
+              ? urlInputValue.startsWith("http://")
+                ? urlInputValue.slice(7)
+                : urlInputValue.slice(8)
+              : urlInputValue
+          }
           className={`outline-0 w-full font-semibold text-slate-500`}
-          onChange={(event) => setViewLink(event.target.value)}
+          onChange={handleUrlInputChange}
+          style={{
+            width:
+              urlInputValue.length * 8 > 200 ? urlInputValue.length * 8 : 200,
+          }}
         />
         <input
           role="button"
           type="submit"
-          value={"GO"}
-          className={`p-1.5 font-semibold rounded-full ${
-            viewLink
+          value={
+            viewUrl === (urlInputValue ? urlInputValue : null)
+              ? "RUNNING"
+              : "GO"
+          }
+          className={`p-1.5 ${
+            viewUrl === (urlInputValue ? urlInputValue : null)
+              ? "px-2 text-sm select-none cursor-not-allowed"
+              : ""
+          } font-semibold rounded-full ${
+            urlInputValue
               ? "bg-emerald-500 text-white"
               : "text-slate-500 bg-emerald-100 pointer-events-none select-none"
           }`}

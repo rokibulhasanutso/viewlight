@@ -46,11 +46,13 @@ const Navbar = () => {
               className="relative text-lg cursor-pointer group tooltip tooltip-fullscreen hover:text-emerald-500 text-slate-500"
             >
               {fullScreenStatus ? (
-                <span className="inline-block group-hover:scale-125 transform font-bold">
+                <span className="inline-block group-hover:scale-125 transform">
                   <BsFullscreenExit style={{strokeWidth: 1}}/>
                 </span>
               ) : (
-                <BsArrowsFullscreen />
+                <span className="inline-block group-hover:scale-125 transform">
+                  <BsArrowsFullscreen />
+                </span>
               )}
 
               <Tooltip
