@@ -10,6 +10,7 @@ export const layoutCategory = createSlice({
     layoutValue: defaultLayout,
 
     viewUrl: "",
+    layoutSelected: false,
   },
 
   reducers: {
@@ -20,17 +21,20 @@ export const layoutCategory = createSlice({
 
     changeCurrentLayout: (state) => {
       state.layoutValue = state.initialValue;
+      state.layoutSelected = false;
     },
 
     changeCategoryLayout: (state, action) => {
       state.initialValue = action.payload;
       state.layoutValue = action.payload;
+      state.layoutSelected = false;
     },
 
     changeSingleLayout: (state, action) => {
       state.layoutValue = state.initialValue.filter(
         (value) => value.name === action.payload
       );
+      state.layoutSelected = true;
     },
 
     setViewUrl: (state, action) => {

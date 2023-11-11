@@ -6,24 +6,24 @@ import { useEffect } from "react";
 import { layoutFullScreen } from "./redux/slices/layoutCategory";
 
 const App = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  const { layoutValue, fullScreenStatus, viewUrl } = useSelector(
+  const { layoutValue, fullScreenStatus, viewUrl, layoutSelected } = useSelector(
     (state) => state.layoutCategory
   );
 
   // for fullScreen press esc button 
-  useEffect(() => {
-    const escapeButtonPress = (event) => {
-      if (event.key === "") {
-        dispatch(layoutFullScreen(!fullScreenStatus));
-      }
-    };
+  // useEffect(() => {
+  //   const escapeButtonPress = (event) => {
+  //     if (event.key === "Esc") {
+  //       dispatch(layoutFullScreen(!fullScreenStatus));
+  //     }
+  //   };
 
-    document.addEventListener("keyup", escapeButtonPress);
+  //   document.addEventListener("keyup", escapeButtonPress);
 
-    return () => document.removeEventListener("keyup", escapeButtonPress);
-  }, [fullScreenStatus, dispatch]);
+  //   return () => document.removeEventListener("keyup", escapeButtonPress);
+  // }, [fullScreenStatus, dispatch]);
 
   return (
     <>
@@ -38,7 +38,7 @@ const App = () => {
           </div>
         ) : (
           <div className="pt-20 pb-56 flex flex-wrap justify-center items-center gap-10">
-            {layoutValue.map(({ name, width, height }, index) => {
+            {layoutValue.map(({ name, width, height, shortName }, index) => {
               return (
                 <ViewLayout
                   key={index}
@@ -46,6 +46,8 @@ const App = () => {
                   height={height}
                   layoutName={name}
                   viewUrl={viewUrl}
+                  shortName={shortName}
+                  selected={layoutSelected}
                 />
               );
             })}

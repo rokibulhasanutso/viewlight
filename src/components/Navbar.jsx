@@ -1,7 +1,5 @@
 import Logo from "./Logo";
 import {
-  BsArrowsFullscreen,
-  BsFullscreenExit,
   BsLaptop,
   BsTabletLandscape,
 } from "react-icons/bs";
@@ -11,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   changeCategoryLayout,
   changeSingleLayout,
-  layoutFullScreen,
 } from "../redux/slices/layoutCategory";
 import {
   bootstrapLayout,
@@ -19,6 +16,7 @@ import {
   tailwindLayout,
 } from "../data/dataStore";
 import LayoutViewLink from "./LayoutViewLink";
+import FullScreenButton from "./button/FullScreenButton";
 
 const Navbar = () => {
   const { initialValue, fullScreenStatus } = useSelector(
@@ -41,26 +39,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex gap-5 items-center">
-            <button
-              onClick={() => dispatch(layoutFullScreen(!fullScreenStatus))}
-              className="relative text-lg cursor-pointer group tooltip tooltip-fullscreen hover:text-emerald-500 text-slate-500"
-            >
-              {fullScreenStatus ? (
-                <span className="inline-block group-hover:scale-125 transform">
-                  <BsFullscreenExit style={{strokeWidth: 1}}/>
-                </span>
-              ) : (
-                <span className="inline-block group-hover:scale-125 transform">
-                  <BsArrowsFullscreen />
-                </span>
-              )}
-
-              <Tooltip
-                anchorSelect=".tooltip-fullscreen"
-                className="tooltip-ref"
-                content={fullScreenStatus ? "Fullscreen Exit" : "Fullscreen"}
-              />
-            </button>
+            <FullScreenButton fullScreenStatus={fullScreenStatus}/>
 
             {!fullScreenStatus && (
               <>
