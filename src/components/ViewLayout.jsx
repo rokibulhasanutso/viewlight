@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdExpand } from "react-icons/md";
 import { BsArrowsCollapse } from "react-icons/bs";
 import { AiOutlineSelect, AiOutlineImport } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   changeCurrentLayout,
   changeSingleLayout,
