@@ -1,0 +1,22 @@
+.tooltip .tooltip-ref {
+  border-radius: 9999px;
+  padding: 4px 20px;
+}
+
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+  transition: all 0.5s ease; /* You can adjust the duration and easing function */
+}
+
+.box.big {
+  width: 200px;
+  height: 200px;
+}
+
+.box.small {
+  width: 50px;
+  height: 50px;
+}
