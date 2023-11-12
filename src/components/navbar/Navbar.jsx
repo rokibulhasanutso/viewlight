@@ -1,4 +1,4 @@
-import Logo from "./Logo";
+import Logo from "../Logo";
 import {
   BsLaptop,
   BsTabletLandscape,
@@ -9,14 +9,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   changeCategoryLayout,
   changeSingleLayout,
-} from "../redux/slices/layoutCategory";
+} from "../../redux/slices/layoutCategory";
 import {
   bootstrapLayout,
   defaultLayout,
   tailwindLayout,
-} from "../data/dataStore";
-import LayoutViewLink from "./LayoutViewLink";
-import FullScreenButton from "./button/FullScreenButton";
+} from "../../data/dataStore";
+import LayoutViewLink from "../LayoutViewLink";
+import FullScreenButton from "../button/FullScreenButton";
 
 const Navbar = () => {
   const { initialValue, fullScreenStatus } = useSelector(
@@ -31,9 +31,10 @@ const Navbar = () => {
           <div>
             <div className="border rounded-full bg-white ps-3.5 pe-2 py-1.5 border-slate-400">
               <div className="flex gap-5 items-center">
-                <Logo size={"text-xl"} />
 
+                <Logo size={"text-xl"} />
                 <LayoutViewLink />
+                
               </div>
             </div>
           </div>

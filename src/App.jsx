@@ -1,42 +1,25 @@
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import "./App.css";
 import ViewLayout from "./components/ViewLayout";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { layoutFullScreen } from "./redux/slices/layoutCategory";
+import { useSelector } from "react-redux";
+import FullScreenNavBars from "./components/navbar/FullScreenNavBars";
 
 const App = () => {
-  // const dispatch = useDispatch();
-
-  const { layoutValue, fullScreenStatus, viewUrl, layoutSelected } = useSelector(
-    (state) => state.layoutCategory
-  );
-
-  // for fullScreen press esc button 
-  // useEffect(() => {
-  //   const escapeButtonPress = (event) => {
-  //     if (event.key === "Esc") {
-  //       dispatch(layoutFullScreen(!fullScreenStatus));
-  //     }
-  //   };
-
-  //   document.addEventListener("keyup", escapeButtonPress);
-
-  //   return () => document.removeEventListener("keyup", escapeButtonPress);
-  // }, [fullScreenStatus, dispatch]);
+  const { fullScreenStatus, viewUrl, layoutValue, layoutSelected } =
+    useSelector((state) => state.layoutCategory);
 
   return (
     <>
-      <div>
-        <Navbar />
-        {fullScreenStatus ? (
+      {fullScreenStatus ? (
+        <div>
+          <FullScreenNavBars/>
           <div className="w-screen h-screen ">
-            <iframe
-              src={viewUrl}
-              className={`w-full h-full bg-white`}
-            ></iframe>
+            <iframe src={viewUrl} className={`w-full h-full bg-white`}></iframe>
           </div>
-        ) : (
+        </div>
+      ) : (
+        <div>
+          <Navbar />
           <div className="pt-20 pb-56 flex flex-wrap justify-center items-center gap-10">
             {layoutValue.map(({ name, width, height, shortName }, index) => {
               return (
@@ -52,8 +35,8 @@ const App = () => {
               );
             })}
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };

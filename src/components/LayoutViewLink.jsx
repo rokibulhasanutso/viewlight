@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setViewUrl } from "../redux/slices/layoutCategory";
 import { useState } from "react";
 
-const LayoutViewLink = () => {
+const LayoutViewLink = ({whenFocus, whenBlur}) => {
   const [urlInputValue, setUrlInputValue] = useState("");
   const { viewUrl } = useSelector((state) => state.layoutCategory);
   const dispatch = useDispatch();
@@ -47,8 +47,10 @@ const LayoutViewLink = () => {
                 : urlInputValue.slice(8)
               : urlInputValue
           }
-          className={`outline-0 w-full font-semibold text-slate-500`}
+          className={`outline-0 w-full bg-transparent font-semibold text-slate-500`}
           onChange={handleUrlInputChange}
+          onFocus={whenFocus}
+          onBlur={whenBlur}
           style={{
             width:
               urlInputValue.length * 8 > 200 ? urlInputValue.length * 8 : 200,
@@ -64,7 +66,7 @@ const LayoutViewLink = () => {
           }
           className={`p-1.5 ${
             viewUrl === (urlInputValue ? urlInputValue : null)
-              ? "px-2 text-sm select-none cursor-not-allowed"
+              ? "px-2 py-2 text-sm select-none cursor-not-allowed"
               : ""
           } font-semibold rounded-full ${
             urlInputValue

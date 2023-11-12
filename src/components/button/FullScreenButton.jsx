@@ -10,7 +10,7 @@ const FullScreenButton = ({fullScreenStatus}) => {
   return (
     <button
       onClick={() => dispatch(layoutFullScreen(!fullScreenStatus))}
-      className="relative text-lg cursor-pointer group tooltip tooltip-fullscreen hover:text-emerald-500 text-slate-500"
+      className="relative text-lg leading-3 cursor-pointer group tooltip tooltip-fullscreen hover:text-emerald-500 text-slate-500"
     >
       {fullScreenStatus ? (
         <span className="inline-block group-hover:scale-125 transform">
