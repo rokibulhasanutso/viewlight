@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setViewUrl } from "../redux/slices/layoutCategory";
-import { useState } from "react";
+import { setUrlInputValue, setViewUrl } from "../redux/slices/layoutCategory";
+// import { useState } from "react";
 
 const LayoutViewLink = ({whenFocus, whenBlur}) => {
-  const [urlInputValue, setUrlInputValue] = useState("");
-  const { viewUrl } = useSelector((state) => state.layoutCategory);
+  // const [urlInputValue, setUrlInputValue] = useState("");
+  const { viewUrl, urlInputValue } = useSelector((state) => state.layoutCategory);
   const dispatch = useDispatch();
 
   const handleUrlInputChange = (event) => {
@@ -17,7 +17,7 @@ const LayoutViewLink = ({whenFocus, whenBlur}) => {
             urlValue.startsWith("localhost") ? "http://" : "https://"
           }${urlValue}`;
 
-    setUrlInputValue(validUrlValue);
+    dispatch(setUrlInputValue(validUrlValue));
   };
 
   const handleSubmit = (event) => {

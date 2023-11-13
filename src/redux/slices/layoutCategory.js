@@ -10,6 +10,7 @@ export const layoutCategory = createSlice({
     layoutValue: defaultLayout,
 
     viewUrl: "",
+    urlInputValue: "",
     layoutSelected: false,
   },
 
@@ -43,6 +44,10 @@ export const layoutCategory = createSlice({
 
       console.log(state.viewUrl);
     },
+
+    setUrlInputValue : (state, action) => {
+      state.urlInputValue = action.payload;
+    }
   },
 });
 
@@ -52,6 +57,7 @@ export const {
   changeCurrentLayout,
   layoutFullScreen,
   setViewUrl,
+  setUrlInputValue,
 } = layoutCategory.actions;
 
 export default layoutCategory.reducer;
